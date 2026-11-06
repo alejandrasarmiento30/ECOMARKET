@@ -439,7 +439,7 @@ const productosEcoMarket = [
     "ciudad": "Bogotá",
     "organico": true,
     "fechaRegistro": "2026-10-24",
-    >activo": true
+    "activo": true
   },
   {
     "id": 35,
