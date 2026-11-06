@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KPIs - Dashboard EcoMarket</title>
+    <link rel="stylesheet" href="styles2.css">
+</head>
+<body>
+    <section class="kpi-container" aria-label="Indicadores clave de rendimiento">
+        
+        <!-- Tarjeta 1: Productos registrados -->
+        <article class="kpi-card">
+            <div class="kpi-header">
+                <div class="kpi-icon-wrapper" aria-hidden="true">
+                    <svg class="kpi-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                    </svg>
+                </div>
+                <span class="kpi-trend positive">+12% este mes</span>
+            </div>
+            <div class="kpi-body">
+                <h3 class="kpi-title">Productos registrados</h3>
+                <p class="kpi-value">248</p>
+                <p class="kpi-description">Cantidad total de productos activos en el catálogo.</p>
+            </div>
+        </article>
+
+        <!-- Tarjeta 2: Inventario bajo -->
+        <article class="kpi-card kpi-alert">
+            <div class="kpi-header">
+                <div class="kpi-icon-wrapper" aria-hidden="true">
+                    <svg class="kpi-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
+                </div>
+                <span class="kpi-trend warning">Atención requerida</span>
+            </div>
+            <div class="kpi-body">
+                <h3 class="kpi-title">Inventario bajo</h3>
+                <p class="kpi-value">12</p>
+                <p class="kpi-description">Productos con existencia igual o inferior al stock mínimo.</p>
+            </div>
+        </article>
+
+        <!-- Tarjeta 3: Valor del inventario -->
+        <article class="kpi-card">
+            <div class="kpi-header">
+                <div class="kpi-icon-wrapper" aria-hidden="true">
+                    <svg class="kpi-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                <span class="kpi-trend positive">Valor actualizado</span>
+            </div>
+            <div class="kpi-body">
+                <h3 class="kpi-title">Valor del inventario</h3>
+                <p class="kpi-value">$18.450.000 <span class="kpi-currency">COP</span></p>
+                <p class="kpi-description">Suma total del precio por cantidad disponible.</p>
+            </div>
+        </article>
+
+    </section>
+</body>
+</html>
