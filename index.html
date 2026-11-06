@@ -3,218 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoMarket - Alimentos Orgánicos y Sostenibles en Colombia</title>
+    <title>EcoMarket - Dashboard Administrativo</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header class="site-header">
-        <div class="header-container">
-            <div class="logo-container">
-                <a href="#inicio" class="logo-link">EcoMarket</a>
-            </div>
-            <nav class="site-nav" aria-label="Menú principal">
-                <ul class="nav-list">
-                    <li class="nav-item"><a href="#beneficios" class="nav-link">Beneficios</a></li>
-                    <li class="nav-item"><a href="#categorias" class="nav-link">Categorías</a></li>
-                    <li class="nav-item"><a href="#productos-destacados" class="nav-link">Productos</a></li>
-                    <li class="nav-item"><a href="#productores" class="nav-link">Productores</a></li>
-                    <li class="nav-item"><a href="#testimonios" class="nav-link">Testimonios</a></li>
-                    <li class="nav-item"><a href="#suscripcion" class="nav-link">Únete</a></li>
-                </ul>
-            </nav>
+
+    <!-- Botón Menú Hamburguesa (Visible en móviles) -->
+    <button id="menu-toggle" class="menu-toggle" aria-expanded="false" aria-controls="sidebar" aria-label="Abrir menú de navegación">
+        ☰
+    </button>
+
+    <!-- Sidebar de Navegación -->
+    <aside id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h2>EcoMarket</h2>
         </div>
-    </header>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="#kpi" class="nav-link">Inicio / KPIs</a></li>
+                <li><a href="#productos-container" class="nav-link">Catálogo</a></li>
+                <li><a href="#inventario" class="nav-link">Inventario</a></li>
+            </ul>
+        </nav>
+    </aside>
 
-    <main id="inicio" class="main-content">
-        <section class="hero-section">
-            <div class="hero-content">
-                <span class="hero-badge">100% Orgánico y Local</span>
-                <h1 class="hero-title">Del campo colombiano directamente a tu hogar</h1>
-                <p class="hero-subtitle">Conectamos familias productoras locales con consumidores conscientes que buscan alimentación saludable y un comercio justo.</p>
-                <div class="hero-actions">
-                    <a href="#productos-destacados" class="btn btn-primary">Explorar mercado</a>
-                    <a href="#beneficios" class="btn btn-secondary">Conoce más</a>
+    <!-- Overlay para cerrar el menú en móviles al hacer clic fuera -->
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+    <!-- Contenido Principal -->
+    <main class="main-content">
+        
+        <!-- Sección de KPIs -->
+        <section id="kpi" class="kpi-container" aria-label="Indicadores clave de rendimiento">
+            
+            <!-- Tarjeta 1 -->
+            <article class="kpi-card">
+                <div class="kpi-header">
+                    <div class="kpi-icon-wrapper" aria-hidden="true">📊</div>
+                    <span class="kpi-trend positive">Activo</span>
                 </div>
-            </div>
-            <div class="hero-image-container">
-                <img src="https://via.placeholder.com/600x400" alt="Cosecha de productos orgánicos frescos cultivados por agricultores locales en Colombia" class="hero-image">
-            </div>
-        </section>
-
-        <section id="beneficios" class="benefits-section">
-            <div class="section-header">
-                <h2 class="section-title">¿Por qué elegir EcoMarket?</h2>
-                <p class="section-description">Apoyamos el desarrollo sostenible y garantizamos la máxima calidad en cada entrega.</p>
-            </div>
-            <div class="benefits-grid">
-                <article class="benefit-card">
-                    <img src="https://via.placeholder.com/80" alt="Icono representativo de impacto ambiental positivo" class="benefit-icon">
-                    <h3 class="benefit-title">Impacto Ambiental Positivo</h3>
-                    <p class="benefit-text">Prácticas agrícolas regenerativas que protegen los suelos y la biodiversidad de nuestras regiones.</p>
-                </article>
-                <article class="benefit-card">
-                    <img src="https://via.placeholder.com/80" alt="Icono representativo de comercio justo sin intermediarios" class="benefit-icon">
-                    <h3 class="benefit-title">Comercio Justo</h3>
-                    <p class="benefit-text">Precios justos para los agricultores locales, eliminando cadenas innecesarias de intermediación.</p>
-                </article>
-                <article class="benefit-card">
-                    <img src="https://via.placeholder.com/80" alt="Icono representativo de frescura garantizada del campo a la mesa" class="benefit-icon">
-                    <h3 class="benefit-title">Frescura Garantizada</h3>
-                    <p class="benefit-text">Alimentos cosechados en su punto óptimo de maduración y entregados frescos en la puerta de tu casa.</p>
-                </article>
-            </div>
-        </section>
-
-        <section id="categorias" class="categories-section">
-            <div class="section-header">
-                <h2 class="section-title">Categorías Populares</h2>
-                <p class="section-description">Encuentra todo lo necesario para una despensa saludable y sostenible.</p>
-            </div>
-            <div class="categories-grid">
-                <a href="#productos-destacados" class="category-card">
-                    <img src="https://via.placeholder.com/300x200" alt="Frutas y verduras frescas y orgánicas cultivadas en Colombia" class="category-image">
-                    <h3 class="category-name">Frutas y Verduras</h3>
-                </a>
-                <a href="#productos-destacados" class="category-card">
-                    <img src="https://via.placeholder.com/300x200" alt="Café de especialidad y cacao artesanal colombiano" class="category-image">
-                    <h3 class="category-name">Café y Cacao</h3>
-                </a>
-                <a href="#productos-destacados" class="category-card">
-                    <img src="https://via.placeholder.com/300x200" alt="Productos de despensa orgánica y granos ancestrales" class="category-image">
-                    <h3 class="category-name">Despensa Orgánica</h3>
-                </a>
-                <a href="#productos-destacados" class="category-card">
-                    <img src="https://via.placeholder.com/300x200" alt="Artículos de cuidado personal ecológicos y naturales" class="category-image">
-                    <h3 class="category-name">Cuidado Personal</h3>
-                </a>
-            </div>
-        </section>
-
-        <section id="productos-destacados" class="products-section">
-            <div class="section-header">
-                <h2 class="section-title">Productos Destacados</h2>
-                <p class="section-description">Selección especial de temporada de nuestros productores aliados.</p>
-            </div>
-            <div class="products-grid">
-                <article class="product-card">
-                    <span class="product-badge">100% Orgánico</span>
-                    <img src="https://via.placeholder.com/300x300" alt="Canasta de vegetales orgánicos variados cultivados en Cundinamarca" class="product-image">
-                    <div class="product-info">
-                        <span class="product-category">Frutas y Verduras</span>
-                        <h3 class="product-name">Canasta Orgánica Campesina (5 kg)</h3>
-                        <p class="product-price">$45.000 COP</p>
-                        <button type="button" class="btn btn-product">Agregar al carrito</button>
-                    </div>
-                </article>
-                <article class="product-card">
-                    <span class="product-badge">Productor Local</span>
-                    <img src="https://via.placeholder.com/300x300" alt="Empaque de café de origen especial de la Sierra Nevada" class="product-image">
-                    <div class="product-info">
-                        <span class="product-category">Café y Cacao</span>
-                        <h3 class="product-name">Café de Origen Sierra Nevada (500g)</h3>
-                        <p class="product-price">$28.000 COP</p>
-                        <button type="button" class="btn btn-product">Agregar al carrito</button>
-                    </div>
-                </article>
-                <article class="product-card">
-                    <span class="product-badge">100% Orgánico</span>
-                    <img src="https://via.placeholder.com/300x300" alt="Frasco de miel de abejas silvestre artesanal de Boyacá" class="product-image">
-                    <div class="product-info">
-                        <span class="product-category">Despensa Orgánica</span>
-                        <h3 class="product-name">Miel de Abejas Silvestre (350g)</h3>
-                        <p class="product-price">$22.000 COP</p>
-                        <button type="button" class="btn btn-product">Agregar al carrito</button>
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <section id="productores" class="producers-section">
-            <div class="section-header">
-                <h2 class="section-title">Nuestros Productores Aliados</h2>
-                <p class="section-description">Manos colombianas que trabajan la tierra con amor, tradición y respeto ambiental.</p>
-            </div>
-            <div class="producers-grid">
-                <article class="producer-card">
-                    <img src="https://via.placeholder.com/150" alt="Retrato de Doña Rosa, agricultora aliada de EcoMarket" class="producer-image">
-                    <h3 class="producer-name">Finca La Esperanza</h3>
-                    <p class="producer-location">Subachoque, Cundinamarca</p>
-                    <p class="producer-bio">"Cultivamos hortalizas limpias conservando el agua y las tradiciones de nuestra vereda."</p>
-                </article>
-                <article class="producer-card">
-                    <img src="https://via.placeholder.com/150" alt="Retrato de Don Carlos, productor de café aliado" class="producer-image">
-                    <h3 class="producer-name">Caficultores del Sol</h3>
-                    <p class="producer-location">Minca, Magdalena</p>
-                    <p class="producer-bio">"Café de sombra cultivado bajo el canto de las aves, con pasión familiar de generación en generación."</p>
-                </article>
-            </div>
-        </section>
-
-        <section id="testimonios" class="testimonials-section">
-            <div class="section-header">
-                <h2 class="section-title">Lo que dicen nuestros clientes</h2>
-                <p class="section-description">Experiencias reales de consumidores conscientes en Colombia.</p>
-            </div>
-            <div class="testimonials-grid">
-                <blockquote class="testimonial-card">
-                    <p class="testimonial-text">"La frescura de los vegetales es increíble y saber que le estoy comprando directamente a campesinos colombianos me da mucha tranquilidad."</p>
-                    <footer class="testimonial-footer">
-                        <cite class="testimonial-author">Camila Restrepo</cite>
-                        <span class="testimonial-city">Bogotá</span>
-                    </footer>
-                </blockquote>
-                <blockquote class="testimonial-card">
-                    <p class="testimonial-text">"El proceso de compra es muy sencillo y los productos llegan perfectamente empacados sin plásticos de un solo uso. ¡Excelente servicio!"</p>
-                    <footer class="testimonial-footer">
-                        <cite class="testimonial-author">Andrés Felipe Gómez</cite>
-                        <span class="testimonial-city">Medellín</span>
-                    </footer>
-                </blockquote>
-            </div>
-        </section>
-
-        <section id="suscripcion" class="subscription-section">
-            <div class="subscription-container">
-                <div class="subscription-content">
-                    <h2 class="subscription-title">Únete a la comunidad EcoMarket</h2>
-                    <p class="subscription-description">Suscríbete hoy y recibe un 15% de descuento en tu primer pedido de productos sostenibles.</p>
-                    <form class="subscription-form">
-                        <div class="form-group">
-                            <label for="nombre-usuario" class="form-label">Nombre completo</label>
-                            <input type="text" id="nombre-usuario" name="nombre" class="form-input" placeholder="Tu nombre" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="correo-usuario" class="form-label">Correo electrónico</label>
-                            <input type="email" id="correo-usuario" name="correo" class="form-input" placeholder="tucorreo@ejemplo.com" required>
-                        </div>
-                        <button type="submit" class="btn btn-submit">Suscribirme y obtener descuento</button>
-                    </form>
+                <div class="kpi-body">
+                    <h3 class="kpi-title">Productos registrados</h3>
+                    <p id="kpi-registrados" class="kpi-value">0</p>
+                    <p class="kpi-description">Cantidad total de productos en catálogo.</p>
                 </div>
+            </article>
+
+            <!-- Tarjeta 2 -->
+            <article class="kpi-card kpi-alert">
+                <div class="kpi-header">
+                    <div class="kpi-icon-wrapper" aria-hidden="true">⚠️</div>
+                    <span class="kpi-trend warning">Atención</span>
+                </div>
+                <div class="kpi-body">
+                    <h3 class="kpi-title">Inventario bajo</h3>
+                    <p id="kpi-bajo" class="kpi-value">0</p>
+                    <p class="kpi-description">Productos con stock igual o inferior al mínimo.</p>
+                </div>
+            </article>
+
+            <!-- Tarjeta 3 -->
+            <article class="kpi-card">
+                <div class="kpi-header">
+                    <div class="kpi-icon-wrapper" aria-hidden="true">💰</div>
+                    <span class="kpi-trend positive">COP</span>
+                </div>
+                <div class="kpi-body">
+                    <h3 class="kpi-title">Valor del inventario</h3>
+                    <p id="kpi-valor" class="kpi-value">$0</p>
+                    <p class="kpi-description">Suma total de precio por stock disponible.</p>
+                </div>
+            </article>
+
+        </section>
+
+        <!-- Sección de Controles (Búsqueda, Filtros y Botón CRUD) -->
+        <section class="management-section" id="inventario">
+            <div class="section-header">
+                <h2>Gestión de Inventario y Catálogo</h2>
+            </div>
+
+            <div class="filters-container">
+                <input type="text" id="input-busqueda" placeholder="Buscar por nombre o productor..." />
+                
+                <select id="filtro-categoria">
+                    <option value="">Todas las categorías</option>
+                </select>
+
+                <select id="filtro-ciudad">
+                    <option value="">Todas las ciudades</option>
+                </select>
+
+                <select id="filtro-estado">
+                    <option value="">Todos los estados</option>
+                    <option value="disponible">Disponible</option>
+                    <option value="stock-bajo">Stock bajo</option>
+                    <option value="agotado">Agotado</option>
+                </select>
+
+                <button id="btn-limpiar-filtros" class="btn-secondary">Limpiar Filtros</button>
+                <button id="btn-abrir-modal" class="btn-primary">+ Agregar Producto</button>
+            </div>
+
+            <!-- Contenedor dinámico de Tarjetas (Cards) -->
+            <div id="productos-container" class="cards-grid">
+                <!-- Se renderiza mediante JavaScript -->
             </div>
         </section>
+
     </main>
 
-    <footer class="site-footer">
-        <div class="footer-container">
-            <div class="footer-brand">
-                <h3 class="footer-logo">EcoMarket</h3>
-                <p class="footer-tagline">Conectando productores locales con consumidores conscientes en Colombia.</p>
-            </div>
-            <div class="footer-links">
-                <h4 class="footer-heading">Navegación</h4>
-                <ul class="footer-list">
-                    <li><a href="#beneficios" class="footer-link">Beneficios</a></li>
-                    <li><a href="#categorias" class="footer-link">Categorías</a></li>
-                    <li><a href="#productos-destacados" class="footer-link">Productos</a></li>
-                    <li><a href="#productores" class="footer-link">Productores</a></li>
-                </ul>
-            </div>
-            <div class="footer-info">
-                <h4 class="footer-heading">Métodos de Pago</h4>
-                <p class="footer-text">Aceptamos PSE, Nequi, Daviplata y tarjetas de crédito de forma segura en Colombia.</p>
-                <p class="footer-copyright"> 2026 EcoMarket. Todos los derechos reservados.</p>
-            </div>
+    <!-- Modal para Operaciones CRUD (Crear / Editar) -->
+    <div id="product-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span id="btn-cerrar-modal" class="close">&times;</span>
+            <h2 id="modal-title">Gestión de Producto</h2>
+            <form id="product-form">
+                <div class="form-group">
+                    <label for="nombre">Nombre del producto:</label>
+                    <input type="text" id="nombre" required minlength="3" maxlength="80">
+                </div>
+                <div class="form-group">
+                    <label for="categoria">Categoría:</label>
+                    <select id="categoria" required>
+                        <option value="Frutas y verduras">Frutas y verduras</option>
+                        <option value="Despensa">Despensa</option>
+                        <option value="Cuidado personal">Cuidado personal</option>
+                        <option value="Hogar sostenible">Hogar sostenible</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="precio">Precio (COP):</label>
+                    <input type="number" id="precio" required min="1">
+                </div>
+                <div class="form-group">
+                    <label for="stock">Stock actual:</label>
+                    <input type="number" id="stock" required min="0">
+                </div>
+                <div class="form-group">
+                    <label for="stockMinimo">Stock mínimo:</label>
+                    <input type="number" id="stockMinimo" required min="0">
+                </div>
+                <div class="form-group">
+                    <label for="productor">Productor:</label>
+                    <input type="text" id="productor" required minlength="3" maxlength="80">
+                </div>
+                <div class="form-group">
+                    <label for="ciudad">Ciudad:</label>
+                    <select id="ciudad" required>
+                        <option value="Bucaramanga">Bucaramanga</option>
+                        <option value="Floridablanca">Floridablanca</option>
+                        <option value="Girón">Girón</option>
+                        <option value="Bogotá">Bogotá</option>
+                        <option value="Medellín">Medellín</option>
+                        <option value="Cali">Cali</option>
+                        <option value="Tunja">Tunja</option>
+                        <option value="Cúcuta">Cúcuta</option>
+                    </select>
+                </div>
+                <div class="form-group checkbox-group">
+                    <label><input type="checkbox" id="organico" checked> Producto Orgánico</label>
+                    <label><input type="checkbox" id="activo" checked> Activo en catálogo</label>
+                </div>
+                <button type="submit" class="btn-save">Guardar Producto</button>
+            </form>
         </div>
-    </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="productos.js" defer></script>
+    <script src="app.js" defer></script>
 </body>
 </html>
