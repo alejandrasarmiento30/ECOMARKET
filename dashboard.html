@@ -3,63 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KPIs - Dashboard EcoMarket</title>
+    <title>Panel Administrativo - EcoMarket</title>
     <link rel="stylesheet" href="dashboard.css">
+    <!-- Iconos (ej. FontAwesome o Lucide para los iconos de KPI y acciones) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <section class="kpi-container" aria-label="Indicadores clave de rendimiento">
-        
-        <!-- Tarjeta 1: Productos registrados -->
-        <article class="kpi-card">
-            <div class="kpi-header">
-                <div class="kpi-icon-wrapper" aria-hidden="true">
-                    <svg class="kpi-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                    </svg>
-                </div>
-                <span class="kpi-trend positive">+12% este mes</span>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-brand">
+                <h2>EcoMarket</h2>
+                <span class="badge-role">Admin</span>
             </div>
-            <div class="kpi-body">
-                <h3 class="kpi-title">Productos registrados</h3>
-                <p class="kpi-value">248</p>
-                <p class="kpi-description">Cantidad total de productos activos en el catálogo.</p>
-            </div>
-        </article>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active"><i class="fa-solid fa-chart-pie"></i> Resumen</a>
+                <a href="#" class="nav-item"><i class="fa-solid fa-box"></i> Inventario</a>
+                <a href="#" class="nav-item"><i class="fa-solid fa-seedling"></i> Productores</a>
+                <a href="#" class="nav-item"><i class="fa-solid fa-users"></i> Clientes</a>
+            </nav>
+        </aside>
 
-        <!-- Tarjeta 2: Inventario bajo -->
-        <article class="kpi-card kpi-alert">
-            <div class="kpi-header">
-                <div class="kpi-icon-wrapper" aria-hidden="true">
-                    <svg class="kpi-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                    </svg>
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header superior con botón hamburguesa -->
+            <header class="top-header">
+                <button id="menu-toggle" class="menu-toggle" aria-expanded="false" aria-controls="sidebar" aria-label="Abrir menú de navegación">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div class="welcome-box">
+                    <h1>Panel de Control</h1>
+                    <p>Hola, Administrador. Aquí está el estado actual del inventario de EcoMarket.</p>
                 </div>
-                <span class="kpi-trend warning">Atención requerida</span>
-            </div>
-            <div class="kpi-body">
-                <h3 class="kpi-title">Inventario bajo</h3>
-                <p class="kpi-value">12</p>
-                <p class="kpi-description">Productos con existencia igual o inferior al stock mínimo.</p>
-            </div>
-        </article>
+            </header>
 
-        <!-- Tarjeta 3: Valor del inventario -->
-        <article class="kpi-card">
-            <div class="kpi-header">
-                <div class="kpi-icon-wrapper" aria-hidden="true">
-                    <svg class="kpi-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
+            <!-- Sección de Tarjetas KPI -->
+            <section class="kpi-section">
+                <div class="kpi-card">
+                    <div class="kpi-icon bg-green"><i class="fa-solid fa-boxes-stacked"></i></div>
+                    <div class="kpi-info">
+                        <h3>Productos Registrados</h3>
+                        <p class="kpi-value">5</p>
+                        <span class="kpi-desc">Activos en plataforma</span>
+                    </div>
                 </div>
-                <span class="kpi-trend positive">Valor actualizado</span>
-            </div>
-            <div class="kpi-body">
-                <h3 class="kpi-title">Valor del inventario</h3>
-                <p class="kpi-value">$18.450.000 <span class="kpi-currency">COP</span></p>
-                <p class="kpi-description">Suma total del precio por cantidad disponible.</p>
-            </div>
-        </article>
+                <div class="kpi-card">
+                    <div class="kpi-icon bg-yellow"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                    <div class="kpi-info">
+                        <h3>Inventario Bajo</h3>
+                        <p class="kpi-value">1</p>
+                        <span class="kpi-desc">Requiere reabastecimiento</span>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon bg-blue"><i class="fa-solid fa-wallet"></i></div>
+                    <div class="kpi-info">
+                        <h3>Valor del Inventario</h3>
+                        <p class="kpi-value">$2.458.000</p>
+                        <span class="kpi-desc">Calculado en COP</span>
+                    </div>
+                </div>
+            </section>
 
-    </section>
+            <!-- Sección de Tabla de Productos -->
+            <section class="table-section">
+                <h2>Gestión de Inventario</h2>
+                <div class="table-responsive">
+                    <table class="products-table">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Producto</th>
+                                <th>Categoría</th>
+                                <th>Precio COP</th>
+                                <th>Stock</th>
+                                <th>Productor</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>ECO001</td>
+                                <td>Miel de abejas 500 g</td>
+                                <td>Despensa</td>
+                                <td>$28.000</td>
+                                <td>18</td>
+                                <td>Apiario La Montaña</td>
+                                <td><span class="badge status-available">Disponible</span></td>
+                                <td>
+                                    <button class="btn-action edit" aria-label="Editar producto ECO001"><i class="fa-solid fa-pen"></i></button>
+                                    <button class="btn-action delete" aria-label="Eliminar producto ECO001"><i class="fa-solid fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>ECO002</td>
+                                <td>Café orgánico 340 g</td>
+                                <td>Despensa</td>
+                                <td>$32.000</td>
+                                <td>5</td>
+                                <td>Café El Roble</td>
+                                <td><span class="badge status-low">Stock bajo</span></td>
+                                <td>
+                                    <button class="btn-action edit" aria-label="Editar producto ECO002"><i class="fa-solid fa-pen"></i></button>
+                                    <button class="btn-action delete" aria-label="Eliminar producto ECO002"><i class="fa-solid fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>ECO003</td>
+                                <td>Jabón artesanal</td>
+                                <td>Cuidado personal</td>
+                                <td>$14.000</td>
+                                <td>24</td>
+                                <td>Manos de Tierra</td>
+                                <td><span class="badge status-available">Disponible</span></td>
+                                <td>
+                                    <button class="btn-action edit" aria-label="Editar producto ECO003"><i class="fa-solid fa-pen"></i></button>
+                                    <button class="btn-action delete" aria-label="Eliminar producto ECO003"><i class="fa-solid fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>ECO004</td>
+                                <td>Canasta de verduras</td>
+                                <td>Frutas y verduras</td>
+                                <td>$35.000</td>
+                                <td>0</td>
+                                <td>Huerta Viva</td>
+                                <td><span class="badge status-out">Agotado</span></td>
+                                <td>
+                                    <button class="btn-action edit" aria-label="Editar producto ECO004"><i class="fa-solid fa-pen"></i></button>
+                                    <button class="btn-action delete" aria-label="Eliminar producto ECO004"><i class="fa-solid fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>ECO005</td>
+                                <td>Bolsa reutilizable</td>
+                                <td>Hogar sostenible</td>
+                                <td>$12.000</td>
+                                <td>40</td>
+                                <td>EcoTextil</td>
+                                <td><span class="badge status-available">Disponible</span></td>
+                                <td>
+                                    <button class="btn-action edit" aria-label="Editar producto ECO005"><i class="fa-solid fa-pen"></i></button>
+                                    <button class="btn-action delete" aria-label="Eliminar producto ECO005"><i class="fa-solid fa-trash"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Overlay para dispositivos móviles -->
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+    <script src="dashboard.js"></script>
 </body>
 </html>
