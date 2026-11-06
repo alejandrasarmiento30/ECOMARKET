@@ -12,6 +12,8 @@
   --color-success-text: #2D5A27;
   --color-warning-bg: rgba(200, 109, 51, 0.1);
   --color-warning-text: #C86D33;
+  --color-danger-bg: rgba(220, 53, 69, 0.1);
+  --color-danger-text: #DC3545;
 
   --font-heading: 'Outfit', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --font-body: 'Inter', 'Open Sans', system-ui, -apple-system, sans-serif;
@@ -51,6 +53,7 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-md);
+  margin-bottom: var(--space-lg);
 }
 
 /* Tarjeta KPI Individual */
@@ -157,6 +160,103 @@ body {
 .kpi-description {
   font-size: 0.85rem;
   color: var(--color-text-light);
+}
+
+/* ==========================================
+   ESTILOS PARA LA SECCIÓN DE TABLA DE PRODUCTOS
+   ========================================== */
+
+.inventory-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+}
+
+.section-header h2 {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  color: var(--color-primary-dark);
+  margin-bottom: var(--space-sm);
+}
+
+/* Contenedor responsive para scroll horizontal en móviles */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9rem;
+  min-width: 700px; /* Asegura que no se comprima demasiado en pantallas pequeñas */
+}
+
+.product-table th,
+.product-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.product-table th {
+  font-family: var(--font-heading);
+  background-color: var(--color-background);
+  color: var(--color-primary-dark);
+  font-weight: 600;
+}
+
+/* Filas alternadas (Efecto cebra) */
+.product-table tbody tr:nth-child(even) {
+  background-color: rgba(249, 248, 246, 0.6);
+}
+
+.product-table tbody tr:hover {
+  background-color: rgba(45, 90, 39, 0.02);
+}
+
+/* Estilos de Badges de Estado */
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  text-align: center;
+}
+
+.badge.disponible {
+  background-color: var(--color-success-bg);
+  color: var(--color-success-text);
+}
+
+.badge.stock-bajo {
+  background-color: var(--color-warning-bg);
+  color: var(--color-warning-text);
+}
+
+.badge.agotado {
+  background-color: var(--color-danger-bg);
+  color: var(--color-danger-text);
+}
+
+/* Botones de acción en la tabla */
+.btn-action {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.25rem;
+  border-radius: var(--radius-sm);
+  transition: background-color var(--transition-normal);
+}
+
+.btn-action:hover {
+  background-color: var(--color-border);
 }
 
 /* Media Queries para Diseño Responsive */
