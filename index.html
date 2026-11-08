@@ -1,177 +1,232 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoMarket - Dashboard Administrativo</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Dashboard administrativo de EcoMarket para gestionar productos e inventario local.">
+  <title>Dashboard | EcoMarket</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="productos.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
+  <script src="app.js" defer></script>
 </head>
 <body>
+  <button
+    class="menu-toggle"
+    id="menu-toggle"
+    type="button"
+    aria-expanded="false"
+    aria-controls="sidebar"
+    aria-label="Abrir menú de navegación"
+  >☰</button>
+  <div class="sidebar-overlay" id="sidebar-overlay" aria-hidden="true"></div>
 
-    <!-- Botón Menú Hamburguesa (Visible en móviles) -->
-    <button id="menu-toggle" class="menu-toggle" aria-expanded="false" aria-controls="sidebar" aria-label="Abrir menú de navegación">
-        ☰
-    </button>
-
-    <!-- Sidebar de Navegación -->
-    <aside id="sidebar" class="sidebar">
-        <div class="sidebar-header">
-            <h2>EcoMarket</h2>
-        </div>
-        <nav class="sidebar-nav">
-            <ul>
-                <li><a href="#kpi" class="nav-link">Inicio / KPIs</a></li>
-                <li><a href="#productos-container" class="nav-link">Catálogo</a></li>
-                <li><a href="#inventario" class="nav-link">Inventario</a></li>
-            </ul>
-        </nav>
-    </aside>
-
-    <!-- Overlay para cerrar el menú en móviles al hacer clic fuera -->
-    <div id="sidebar-overlay" class="sidebar-overlay"></div>
-
-    <!-- Contenido Principal -->
-    <main class="main-content">
-        
-        <!-- Sección de KPIs -->
-        <section id="kpi" class="kpi-container" aria-label="Indicadores clave de rendimiento">
-            
-            <!-- Tarjeta 1 -->
-            <article class="kpi-card">
-                <div class="kpi-header">
-                    <div class="kpi-icon-wrapper" aria-hidden="true">📊</div>
-                    <span class="kpi-trend positive">Activo</span>
-                </div>
-                <div class="kpi-body">
-                    <h3 class="kpi-title">Productos registrados</h3>
-                    <p id="kpi-registrados" class="kpi-value">0</p>
-                    <p class="kpi-description">Cantidad total de productos en catálogo.</p>
-                </div>
-            </article>
-
-            <!-- Tarjeta 2 -->
-            <article class="kpi-card kpi-alert">
-                <div class="kpi-header">
-                    <div class="kpi-icon-wrapper" aria-hidden="true">⚠️</div>
-                    <span class="kpi-trend warning">Atención</span>
-                </div>
-                <div class="kpi-body">
-                    <h3 class="kpi-title">Inventario bajo</h3>
-                    <p id="kpi-bajo" class="kpi-value">0</p>
-                    <p class="kpi-description">Productos con stock igual o inferior al mínimo.</p>
-                </div>
-            </article>
-
-            <!-- Tarjeta 3 -->
-            <article class="kpi-card">
-                <div class="kpi-header">
-                    <div class="kpi-icon-wrapper" aria-hidden="true">💰</div>
-                    <span class="kpi-trend positive">COP</span>
-                </div>
-                <div class="kpi-body">
-                    <h3 class="kpi-title">Valor del inventario</h3>
-                    <p id="kpi-valor" class="kpi-value">$0</p>
-                    <p class="kpi-description">Suma total de precio por stock disponible.</p>
-                </div>
-            </article>
-
-        </section>
-
-        <!-- Sección de Controles (Búsqueda, Filtros y Botón CRUD) -->
-        <section class="management-section" id="inventario">
-            <div class="section-header">
-                <h2>Gestión de Inventario y Catálogo</h2>
-            </div>
-
-            <div class="filters-container">
-                <input type="text" id="input-busqueda" placeholder="Buscar por nombre o productor..." />
-                
-                <select id="filtro-categoria">
-                    <option value="">Todas las categorías</option>
-                </select>
-
-                <select id="filtro-ciudad">
-                    <option value="">Todas las ciudades</option>
-                </select>
-
-                <select id="filtro-estado">
-                    <option value="">Todos los estados</option>
-                    <option value="disponible">Disponible</option>
-                    <option value="stock-bajo">Stock bajo</option>
-                    <option value="agotado">Agotado</option>
-                </select>
-
-                <button id="btn-limpiar-filtros" class="btn-secondary">Limpiar Filtros</button>
-                <button id="btn-abrir-modal" class="btn-primary">+ Agregar Producto</button>
-            </div>
-
-            <!-- Contenedor dinámico de Tarjetas (Cards) -->
-            <div id="productos-container" class="cards-grid">
-                <!-- Se renderiza mediante JavaScript -->
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Modal para Operaciones CRUD (Crear / Editar) -->
-    <div id="product-modal" class="modal" style="display: none;">
-        <div class="modal-content">
-            <span id="btn-cerrar-modal" class="close">&times;</span>
-            <h2 id="modal-title">Gestión de Producto</h2>
-            <form id="product-form">
-                <div class="form-group">
-                    <label for="nombre">Nombre del producto:</label>
-                    <input type="text" id="nombre" required minlength="3" maxlength="80">
-                </div>
-                <div class="form-group">
-                    <label for="categoria">Categoría:</label>
-                    <select id="categoria" required>
-                        <option value="Frutas y verduras">Frutas y verduras</option>
-                        <option value="Despensa">Despensa</option>
-                        <option value="Cuidado personal">Cuidado personal</option>
-                        <option value="Hogar sostenible">Hogar sostenible</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="precio">Precio (COP):</label>
-                    <input type="number" id="precio" required min="1">
-                </div>
-                <div class="form-group">
-                    <label for="stock">Stock actual:</label>
-                    <input type="number" id="stock" required min="0">
-                </div>
-                <div class="form-group">
-                    <label for="stockMinimo">Stock mínimo:</label>
-                    <input type="number" id="stockMinimo" required min="0">
-                </div>
-                <div class="form-group">
-                    <label for="productor">Productor:</label>
-                    <input type="text" id="productor" required minlength="3" maxlength="80">
-                </div>
-                <div class="form-group">
-                    <label for="ciudad">Ciudad:</label>
-                    <select id="ciudad" required>
-                        <option value="Bucaramanga">Bucaramanga</option>
-                        <option value="Floridablanca">Floridablanca</option>
-                        <option value="Girón">Girón</option>
-                        <option value="Bogotá">Bogotá</option>
-                        <option value="Medellín">Medellín</option>
-                        <option value="Cali">Cali</option>
-                        <option value="Tunja">Tunja</option>
-                        <option value="Cúcuta">Cúcuta</option>
-                    </select>
-                </div>
-                <div class="form-group checkbox-group">
-                    <label><input type="checkbox" id="organico" checked> Producto Orgánico</label>
-                    <label><input type="checkbox" id="activo" checked> Activo en catálogo</label>
-                </div>
-                <button type="submit" class="btn-save">Guardar Producto</button>
-            </form>
-        </div>
+  <aside class="sidebar" id="sidebar" aria-label="Barra lateral de navegación">
+    <a class="brand sidebar-brand" href="#inicio">
+      <span class="brand-mark" aria-hidden="true">E</span>
+      <span>EcoMarket</span>
+    </a>
+    <p class="sidebar-caption">ADMINISTRACIÓN</p>
+    <nav class="sidebar-nav" aria-label="Navegación del dashboard">
+      <a class="nav-link" href="#inicio"><span aria-hidden="true">⌂</span> Inicio</a>
+      <a class="nav-link" href="#dashboard"><span aria-hidden="true">▤</span> Dashboard</a>
+      <a class="nav-link" href="#inventario"><span aria-hidden="true">▦</span> Inventario</a>
+    </nav>
+    <div class="sidebar-note">
+      <span aria-hidden="true">🌱</span>
+      <p>Consumo consciente, sabor local.</p>
     </div>
+  </aside>
 
-    <!-- Scripts -->
-    <script src="productos.js" defer></script>
-    <script src="app.js" defer></script>
+  <main class="main-content">
+    <section class="landing-hero" id="inicio" aria-labelledby="landing-title">
+      <div class="landing-copy">
+        <p class="eyebrow">Mercado local · Consumo consciente</p>
+        <h1 id="landing-title">Lo bueno de la tierra,<br>más cerca de ti.</h1>
+        <p>Conecta con productores locales y encuentra productos sostenibles. Administra el catálogo y el inventario desde un solo lugar.</p>
+        <div class="landing-actions">
+          <a class="button button-primary" href="#dashboard">Explorar dashboard <span aria-hidden="true">→</span></a>
+          <a class="landing-text-link" href="#inventario">Ver inventario</a>
+        </div>
+      </div>
+      <div class="landing-highlight" aria-label="EcoMarket promueve un consumo responsable">
+        <span class="landing-leaf" aria-hidden="true">✳</span>
+        <p class="landing-highlight-title">Cada elección cuenta</p>
+        <p>Productos con origen local, decisiones con impacto positivo.</p>
+      </div>
+    </section>
+
+    <div id="dashboard">
+    <p class="app-message" id="app-message" role="status" aria-live="polite" hidden></p>
+    <header class="page-header">
+      <div>
+        <p class="eyebrow">EcoMarket / Administración</p>
+        <h1>Dashboard</h1>
+        <p class="page-subtitle">Resumen de productos e inventario.</p>
+      </div>
+      <button class="button button-primary header-action" id="btn-abrir-modal" type="button">
+        <span aria-hidden="true">＋</span> Agregar producto
+      </button>
+    </header>
+
+    <section class="kpi-grid" aria-label="Indicadores clave de inventario">
+      <article class="kpi-card">
+        <div class="kpi-card-heading">
+          <span class="kpi-icon kpi-icon-green" aria-hidden="true">▦</span>
+          <span class="kpi-label">Productos registrados</span>
+        </div>
+        <p class="kpi-value" id="kpi-registrados" aria-live="polite">0</p>
+        <p class="kpi-description">Productos activos en el catálogo.</p>
+      </article>
+      <article class="kpi-card">
+        <div class="kpi-card-heading">
+          <span class="kpi-icon kpi-icon-amber" aria-hidden="true">!</span>
+          <span class="kpi-label">Inventario bajo</span>
+        </div>
+        <p class="kpi-value" id="kpi-bajo" aria-live="polite">0</p>
+        <p class="kpi-description">Productos activos en su mínimo o por debajo.</p>
+      </article>
+      <article class="kpi-card">
+        <div class="kpi-card-heading">
+          <span class="kpi-icon kpi-icon-green" aria-hidden="true">$</span>
+          <span class="kpi-label">Valor del inventario</span>
+        </div>
+        <p class="kpi-value kpi-value-currency" id="kpi-valor" aria-live="polite">$0 <span>COP</span></p>
+        <p class="kpi-description">Valor total de las existencias activas.</p>
+      </article>
+    </section>
+
+    <section class="validation-section" aria-labelledby="validation-title">
+      <div class="section-header validation-heading">
+        <div>
+          <h2 id="validation-title">Calidad del dataset</h2>
+          <p>Validación del esquema, reglas de negocio y consistencia del catálogo.</p>
+        </div>
+        <div class="validation-actions">
+          <button class="button button-secondary" id="btn-validar-dataset" type="button">Validar ahora</button>
+          <button class="button button-secondary" id="btn-exportar-json" type="button">Exportar JSON</button>
+        </div>
+      </div>
+      <div class="validation-report" id="validation-report" role="status" aria-live="polite"></div>
+    </section>
+
+    <section class="chart-section" aria-labelledby="chart-title">
+      <div class="section-header">
+        <div>
+          <h2 id="chart-title">Productos por categoría</h2>
+          <p>Distribución actual del catálogo por categoría.</p>
+        </div>
+      </div>
+      <div class="chart-container">
+        <canvas id="category-chart" role="img" aria-label="Gráfico de barras con la cantidad de productos por categoría"></canvas>
+      </div>
+      <p class="chart-message" id="chart-message" role="status" aria-live="polite" hidden></p>
+    </section>
+
+    <section class="inventory-section" id="inventario" aria-labelledby="inventory-title">
+      <div class="section-header">
+        <div>
+          <h2 id="inventory-title">Inventario de productos</h2>
+          <p>Busca, filtra y administra los productos de EcoMarket.</p>
+        </div>
+      </div>
+
+      <div class="filters-container" role="search" aria-label="Filtros de productos">
+        <label class="search-field" for="input-busqueda">
+          <span aria-hidden="true">⌕</span>
+          <input type="search" id="input-busqueda" placeholder="Buscar producto o productor..." autocomplete="off">
+        </label>
+        <label class="visually-hidden" for="filtro-categoria">Filtrar por categoría</label>
+        <select id="filtro-categoria">
+          <option value="">Todas las categorías</option>
+        </select>
+        <label class="visually-hidden" for="filtro-ciudad">Filtrar por ciudad</label>
+        <select id="filtro-ciudad">
+          <option value="">Todas las ciudades</option>
+        </select>
+        <label class="visually-hidden" for="filtro-estado">Filtrar por estado</label>
+        <select id="filtro-estado">
+          <option value="">Todos los estados</option>
+          <option value="disponible">Disponible</option>
+          <option value="stock-bajo">Stock bajo</option>
+          <option value="agotado">Agotado</option>
+        </select>
+        <button class="button button-secondary" id="btn-limpiar-filtros" type="button">Limpiar filtros</button>
+      </div>
+
+      <div class="results-summary" id="results-summary" aria-live="polite"></div>
+      <div class="cards-grid" id="productos-container" aria-live="polite"></div>
+    </section>
+    </div>
+  </main>
+
+  <div class="modal" id="product-modal" aria-hidden="true">
+    <section class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-header">
+        <div>
+          <p class="eyebrow">Catálogo EcoMarket</p>
+          <h2 id="modal-title">Agregar producto</h2>
+        </div>
+        <button class="modal-close" id="btn-cerrar-modal" type="button" aria-label="Cerrar formulario">×</button>
+      </div>
+      <form id="product-form">
+        <div class="form-grid">
+          <div class="form-group form-group-wide">
+            <label for="nombre">Nombre del producto</label>
+            <input type="text" id="nombre" name="nombre" required minlength="3" maxlength="80">
+          </div>
+          <div class="form-group">
+            <label for="categoria">Categoría</label>
+            <select id="categoria" name="categoria" required>
+              <option value="">Selecciona una categoría</option>
+              <option value="Frutas y verduras">Frutas y verduras</option>
+              <option value="Despensa">Despensa</option>
+              <option value="Cuidado personal">Cuidado personal</option>
+              <option value="Hogar sostenible">Hogar sostenible</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="precio">Precio (COP)</label>
+            <input type="number" id="precio" name="precio" required min="1" step="1">
+          </div>
+          <div class="form-group">
+            <label for="stock">Stock actual</label>
+            <input type="number" id="stock" name="stock" required min="0" step="1">
+          </div>
+          <div class="form-group">
+            <label for="stockMinimo">Stock mínimo</label>
+            <input type="number" id="stockMinimo" name="stockMinimo" required min="0" step="1">
+          </div>
+          <div class="form-group">
+            <label for="productor">Productor</label>
+            <input type="text" id="productor" name="productor" required minlength="2" maxlength="80">
+          </div>
+          <div class="form-group">
+            <label for="ciudad">Ciudad</label>
+            <select id="ciudad" name="ciudad" required>
+              <option value="">Selecciona una ciudad</option>
+              <option value="Bucaramanga">Bucaramanga</option>
+              <option value="Floridablanca">Floridablanca</option>
+              <option value="Girón">Girón</option>
+              <option value="Bogotá">Bogotá</option>
+              <option value="Medellín">Medellín</option>
+              <option value="Cali">Cali</option>
+              <option value="Tunja">Tunja</option>
+              <option value="Cúcuta">Cúcuta</option>
+            </select>
+          </div>
+          <fieldset class="checkbox-group form-group-wide">
+            <legend>Opciones del catálogo</legend>
+            <label class="checkbox-label"><input type="checkbox" id="organico" name="organico"> Producto orgánico</label>
+            <label class="checkbox-label"><input type="checkbox" id="activo" name="activo" checked> Activo en catálogo</label>
+          </fieldset>
+        </div>
+        <div class="modal-actions">
+          <button class="button button-secondary" id="btn-cancelar-modal" type="button">Cancelar</button>
+          <button class="button button-primary" type="submit">Guardar producto</button>
+        </div>
+      </form>
+    </section>
+  </div>
 </body>
 </html>
